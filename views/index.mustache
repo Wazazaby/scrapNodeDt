@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+		<title>Document</title>
+	</head>
+	<body>
+		<section class="section">
+			<div class="container">
+				<h1 class="title">Bonjour</h1>
+				<p class="subtitle">Que souhaitez-vous voir ?</p>
+				<a href="/" class="button is-black">L'accueil</a>
+				<a href="/group-buys" class="button is-black">Les group-buys</a>
+			</div>
+		</section>
+		<section class="section">
+			<div class="container">
+				{{#gbData}}
+				<div class="box">
+					<h3><strong>{{title}}</strong> {{posted}}</h3>
+					<a href="{{linkTo}}" target="_blank" class="button is-info">Accéder au GB</a>
+				</div>
+				{{/gbData}}
+			</div>
+		</section>
+	</body>
+</html>
