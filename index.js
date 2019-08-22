@@ -10,25 +10,26 @@ app.engine('mustache', hogan.__express);
 const dtUrl = 'https://deskthority.net/viewforum.php?f=50';
 
 async function getGbData(){
-  	let browser = await puppeteer.launch();
-  	let page = await browser.newPage();
-  	await page.goto(dtUrl);
-  	await page.waitFor(1000);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(dtUrl);
+    await page.waitFor(1000);
   	
-  	let gbData = await page.evaluate(() => {
-  	    let gbs = [];
-  		let gbTitles = document.querySelectorAll('li.row');
+    const gbData = await page.evaluate(() => {
+  	    const gbs = [];
+  		const gbTitles = document.querySelectorAll('li.row');
   		gbTitles.forEach((gbElement) => {
-  			let gbJson = {};
   			try{
-  				gbJson.title = gbElement.querySelector('a.topictitle').innerText.trim();
-  				gbJson.linkTo = gbElement.querySelector('a.topictitle').href;
-  				gbJson.posted = gbElement.querySelector('div.topic-poster').innerText.trim();
+                const gbJson = {
+                    title: gbElement.querySelector('a.topictitle').innerText.trim(),
+                    linkTo: gbElement.querySelector('a.topictitle').href,
+                    posted: gbElement.querySelector('div.topic-poster').innerText.trim()
+                };
+
+                gbs.push(gbJson);
   			}catch(e){
   				console.log(e);
   			}
-
-  			gbs.push(gbJson);
   		});
 
   		return gbs;
@@ -40,11 +41,9 @@ async function getGbData(){
 
 app.get('/', (req, res, next) => {
 	res.render('index', null);
-}).get('/group-buys', (req, res, next) => {
-	(async() => {
-		let data = await getGbData();
-		res.render('index', data);
-	})();
+}).get('/group-buys', async (req, res, next) => {
+	const data = await getGbData();
+	res.render('index', data);
 });
 
 app.listen(8080);
