@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-		<title>Index</title>
+		<title>Météo</title>
 	</head>
 	<body>
 		<section class="section">
@@ -14,6 +14,22 @@
 				<a href="/" class="button is-black">L'accueil</a>
 				<a href="/group-buys" class="button is-black">Les group-buys</a>
 				<a href="/forecast" class="button is-black">La météo</a>
+			</div>
+		</section>
+		<section class="section">
+			<div class="container">
+				<form action="/forecast" method="POST">
+					<div class="field">
+						<label for="ville" class="label">Ville</label>
+						<div class="control">
+							<input type="text" name="ville" id="ville" class="input">
+						</div>
+					</div>
+				</form>
+				<div class="box">
+					<h3>{{name}}</h3>
+					<p>{{base}}</p>
+				</div>
 			</div>
 		</section>
 	</body>
