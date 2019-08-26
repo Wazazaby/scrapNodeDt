@@ -53,7 +53,6 @@ async function getForecast(cityName){
         return res.json();
     });
 
-    console.log(apiResult);
     return apiResult;
 }
 
@@ -68,4 +67,5 @@ app.get('/', (req, res, next) => {
 	const data = await getForecast(req.body.ville);
     res.render('forecast', data);
 }).listen(8080);
+
 console.log('Server running on port 8080 @ localhost:8080');

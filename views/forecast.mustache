@@ -26,10 +26,17 @@
 						</div>
 					</div>
 				</form>
-				<div class="box">
-					<h3>{{name}}</h3>
-					<p>{{base}}</p>
-				</div>
+				<section class="section">
+					<div class="box">
+						<h3>Ville : {{name}} ({{sys.country}})</h3>
+						<p>Coordonées :</p>
+						<ul>
+							<li>Longitude : {{coord.lon}}</li>
+							<li>Latitude : {{coord.lat}}</li>
+						</ul>
+						<p>Températures min : {{main.temp_min}} | Température max : {{main.temp_max}}</p>
+					</div>
+				</section>
 			</div>
 		</section>
 	</body>
