@@ -27,15 +27,15 @@
 					</div>
 				</form>
 				<section class="section">
-					<div class="box">
-						<h3>Ville : {{name}} ({{sys.country}})</h3>
-						<p>Coordonées :</p>
-						<ul>
-							<li>Longitude : {{coord.lon}}</li>
-							<li>Latitude : {{coord.lat}}</li>
-						</ul>
-						<p>Températures min : {{main.temp_min}} | Température max : {{main.temp_max}}</p>
-					</div>
+                    <div class="box">
+                        <h3>Ville : {{weather.name}} ({{weather.sys.country}})</h3>
+                        <p>Coordonées :</p>
+                        <ul>
+                            <li>Longitude : {{weather.coord.lon}}</li>
+                            <li>Latitude : {{weather.coord.lat}}</li>
+                        </ul>
+                        <p>Températures min : {{weather.main.temp_min}} | Température max : {{weather.main.temp_max}}</p>
+                    </div>
 				</section>
 			</div>
 		</section>
