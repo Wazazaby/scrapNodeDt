@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+		<title>Call Json</title>
+    </head>
+    <body>
+        <section class="section">
+			<div class="container">
+				<h1 class="title">Bonjour</h1>
+				<p class="subtitle">Que souhaitez-vous voir ?</p>
+				<a href="/" class="button is-black">L'accueil</a>
+				<a href="/group-buys" class="button is-black">Les group-buys</a>
+                <a href="/call-json" class="button is-black">Des appels API</a>
+			</div>
+        </section>
+        <section>
+            <div class="container">
+                <a href="#" class="button is-black" onclick="getUsers()">Afficher les utilisateurs</a>
+                <a href="#" class="button is-black" onclick="getComments()">Afficher les commentaires</a>
+                <a href="#" class="button is-black" onclick="getPosts()">Afficher les posts</a>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div id="display-stuff">
+
+                </div>
+            </div>
+        </section>
+        <script>
+            const getUsers = async () => {
+                const users = await fetch('https://jsonplaceholder.typicode.com/users');
+                const json = await users.json();
+
+                document.getElementById('display-stuff').innerHTML += 'Utilisateurs chargés<br>';
+
+                console.log(json);
+            }
+
+            const getComments = async () => {
+                const comments = await fetch('https://jsonplaceholder.typicode.com/comments');
+                const json = await comments.json();
+
+                document.getElementById('display-stuff').innerHTML += 'Commentaires chargés<br>';
+
+                console.log(json);
+            }
+
+            const getPosts = async () => {
+                const posts = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const json = await posts.json();
+
+                document.getElementById('display-stuff').innerHTML += 'Posts chargés<br>';
+
+                console.log(json);
+            }
+        </script>
+    </body>
+</html>
