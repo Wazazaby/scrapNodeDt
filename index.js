@@ -5,7 +5,7 @@ const hogan         = require('hogan-middleware');
 const bodyParser    = require('body-parser');
 const fetch         = require('node-fetch');
 
-const urlencodedParser = bodyParser.urlencoded({extended: false});
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // Configuration d'express
 const app = express()
@@ -18,7 +18,7 @@ const getGbData = async () => {
     const dtUrl = 'https://deskthority.net/viewforum.php?f=50';
     
     // Lance le browser Chromium ({headless: false} == on voit la page se lancer, passer à true pour que ça se joue en background)
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({ headless: true });
 
     // On créer un nouvel onglet
     const page = await browser.newPage();
@@ -35,7 +35,7 @@ const getGbData = async () => {
 
         // Pour chaque gb, on récupère le titre, le lien ainsi que la date de post, et on insert ces infos dans le tableau gbs
         gbTitles.forEach(gbElement => {
-            try{
+            try {
                 const gbJson = {
                     title: gbElement.querySelector('a.topictitle').innerText.trim(),
                     linkTo: gbElement.querySelector('a.topictitle').href,
@@ -43,8 +43,8 @@ const getGbData = async () => {
                 };
 
                 gbs.push(gbJson);
-            }catch(e){
-                console.log(e);
+            } catch(e) {
+                console.error(e);
             }
         });
 
@@ -55,24 +55,23 @@ const getGbData = async () => {
     
     
     // Englobe le résultat entre {} pour en faire un objet Javascript
-    return {gbData};
+    return { gbData };
 };
 
-const getForecast = async cityName => {
-	const apiKey = 'eaee5ae189087ccabdd90a4d194cbbf4';
-    const city = cityName.trim();
-    const apiLink = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-    const apiResult = await fetch(apiLink);
-    const weather = await apiResult.json();
+// const getForecast = async cityName => {
+// 	const apiKey = 'eaee5ae189087ccabdd90a4d194cbbf4';
+//     const city = cityName.trim();
+//     const apiLink = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+//     const apiResult = await fetch(apiLink);
+//     const weather = await apiResult.json();
 
-    return {weather};
-}
+//     return {weather};
+// }
 
 const fetchJsonPlaceholder = async () => {
     const json = await fetch('https://jsonplaceholder.typicode.com/users');
     const users = await json.json();
-
-    return {users};
+    return { users };
 }
 
 app.get('/', (req, res, next) => {
